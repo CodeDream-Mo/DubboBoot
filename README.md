@@ -1,1 +1,7 @@
 # DubboBoot
+此项目为springboot+dubbo 消费端示例
+一般情况一个项目中既会存在调用远程服务的接口，也会有该模块自己的业务处理接口实现
+简单说Dubbo+zk 就是Dubbo 携带service服务接口的信息和声明(我是提供者，我暴露的接口)向ZK发起注册，ZK收到后将service接口信息(接口名)存储在zk目录中，消费端则是带着service服务接口信息和声明(我是消费端)向ZK发起注册，当消费端调用服务方法时，实际上是向ZK发起了请求，ZK会将该请求转发到具体服务提供方，服务提供方进行真实调用并返回。
+特殊说明:
+服务提供方看之前DubboDemo项目中的dubbo-provider
+如若你的ZK也是在VM中，并且也会出现项目启动注册超时，失败的情况，请在DubboConfiguration配置类中添加 registryConfig.setCheck(false);(启动时不检查ZK是否启动)，如此便可在启动后开始向ZK注册，失败后会重试。

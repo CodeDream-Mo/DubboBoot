@@ -1,0 +1,13 @@
+#启动: nohup java   -Dspring.profiles.active=dev -jar synchronius-1.0.jar >  log.erp 2>&1 &
+server:
+  port: 8090
+  compression:
+    enabled: true
+  connection-timeout: 3000
+
+dubbo:
+  name: dubboBoot
+  zookeeper: zookeeper://192.168.216.128:2181?backup=192.168.216.129:2181,192.168.216.130:2181
+
+
+
